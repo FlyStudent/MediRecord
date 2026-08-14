@@ -4,14 +4,14 @@
  */
 package WaitingRooms;
 
+import Clinic.DynamicLists;
+
 /**
  *
  * @author Student
  */
-public class SequentialDynamicsList<T> {
-
-    public T get(t);
-
-    public boolean remove(T);
+public interface SequentialDynamicsList<T> extends DynamicLists<T>{
+    public T get();
+    public boolean remove();
     
 }
