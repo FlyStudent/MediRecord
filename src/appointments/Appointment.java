@@ -55,19 +55,20 @@ public class Appointment {
     }
     
     public void reschedule(LocalDate newDate, LocalTime newTime){
-        
+        this.date = newDate;
+        this.time = newTime;
     }
 
     public void cancel(){
-        
+        this.status=AppointmentStatus.CANCELLED;
     }
 
     public boolean isPending(){
-        return false;
+        return this.status==AppointmentStatus.SCHEDULED;
     }
 
     public boolean isToday(){
-        return false;
+        return this.date==LocalDate.now();
     }
 
     //public int compareTo(Appointment other); date → time → code
