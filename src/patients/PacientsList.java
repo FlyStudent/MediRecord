@@ -4,18 +4,51 @@
  */
 package patients;
 
+import appointments.KeyDynamicLists;
+import java.util.HashMap;
+import java.util.Iterator;
 /**
  *
  * @author bryan
  */
-public class PacientsList implements KeyDinamicsLists<Patient>,String> {
+public class PacientsList implements KeyDynamicLists<Patient,String> {
     
     private HashMap<String,Patient>patients;
 
     public PacientsList(HashMap patients) {
         this.patients = new HashMap();
     }
-    
+
+    @Override
+    public Patient get(String id) {
+      
+    }
+
+    @Override
+    public boolean remove(String id) {
+        
+    }
+
+    @Override
+    public boolean add(Patient item) {
+        
+    }
+
+    @Override
+    public Iterator getAll() {
+       
+    }
+
+    @Override
+    public int size() {
+        
+    }
+
+    @Override
+    public boolean isEmpty() {
+       
+    }
+
     
     
 }
