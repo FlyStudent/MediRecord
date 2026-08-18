@@ -1,4 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Clinic;
+
 import WaitingRooms.waitingroomlist;
 import appointments.AppointmentsList;
 import java.time.LocalDate;
@@ -8,7 +13,10 @@ import java.util.Iterator;
 import patients.Patient;
 import appointments.Appointment;
 
-
+/**
+ *
+ * @author Yumor
+ */
 public class Clinica {
     private PacientsList patients; 
     private AppointmentsList appoinments;
@@ -21,31 +29,15 @@ public class Clinica {
     }
     
     public boolean addPatient(Patient patient) {
-        patients.add(patient);
-        return true;
     }
 
     public Patient findPatient(String id) {
-    Iterator<Patient> it = patients.getAll();
-
-    while (it.hasNext()) {
-        Patient patient = it.next();
-
-        if (patient.getId().equals(id)) {
-            return patient;
-        }
     }
 
-    return null;
-}
-
     public boolean removePatient(String id) {
-        patients.remove(id);
-        return true; 
     }
 
     public Iterator<Patient> getPatients() {
-        return patients.getAll();
     }
 
     public boolean scheduleAppointment(String code,  LocalDate newDate, LocalTime newTime) {
@@ -59,22 +51,12 @@ public class Clinica {
     }
 
     public Appointment findAppointment(String code) {
-        Iterator<Appointment> it = appoinments.getAll();
-
-        while (it.hasNext()) {
-        Appointment appo = it.next();
-
-        if (appo.getCode().equals(code)) {
-            return appo;
-        }
     }
-
-    return null;
-}
-    
 
     public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
+
     }
+
     public boolean cancelAppointment(String code) {
 
     }
@@ -84,16 +66,7 @@ public class Clinica {
     }
 
     public boolean checkInPatient(String patientId) {
-        Iterator<Appointment> itAppo=appoinments.getAll();
-        while(itAppo.hasNext()){
-            Appointment appo = itAppo.next();
-            if (appo.getPatient().getId().equals(patientId)&&appo.isToday()){
-               waitingRoom.add(appo.getPatient());
-               return true; 
-            }
-            
-        }
-        return false; 
+        
     }
 
     public Patient getNextPatient() {
@@ -111,3 +84,5 @@ public class Clinica {
     public boolean isPatientWaiting(String patientId) {
 
     }
+    
+}
