@@ -5,6 +5,7 @@
 package WaitingRooms;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Queue;
 import patients.Patient;
 
@@ -12,11 +13,17 @@ import patients.Patient;
  * @author Student
  */
 public class waitingroomlist implements SequentialDynamicsList<Patient> {
-    Queue<Patient> waitinList;
+    private Queue<Patient> waitingList;
 
-    public waitingroomlist(Queue<Patient> waitinList) {
-        this.waitinList = waitinList;
+    public waitingroomlist (){
+        this.waitingList = new LinkedList<>();
     }
+    
+    public waitingroomlist(Queue<Patient> waitinList) {
+        this.waitingList = waitinList;
+    }
+    
+    
 
     @Override
     public Patient get() {
