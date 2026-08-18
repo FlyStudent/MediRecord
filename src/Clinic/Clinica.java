@@ -76,11 +76,23 @@ public class Clinica {
     public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
     }
     public boolean cancelAppointment(String code) {
+    Iterator<Appointment> iterator = appoinments.getAll();
 
+    while (iterator.hasNext()) {
+        Appointment appointment = iterator.next();
+
+        if (appointment.getCode().equals(code)) {
+            iterator.remove();
+            return true;
+        }
     }
 
-    public Iterator<Appointment> getAppointments() {
+    return false;
+}
+    
 
+    public Iterator<Appointment> getAppointments() {
+        return appoinments.getAll();
     }
 
     public boolean checkInPatient(String patientId) {
@@ -97,11 +109,11 @@ public class Clinica {
     }
 
     public Patient getNextPatient() {
-
+       
     }
 
     public Patient attendNextPatient() {
-
+       
     }
 
     public int getWaitingPatientCount() {
