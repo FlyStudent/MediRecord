@@ -9,7 +9,7 @@ import java.util.Stack;
 public class MedicalsRecordsList implements SequentialDynamicsList<MedicalRecord>{
 private Stack<MedicalRecord> medicalHistory;
 
-    public MedicalsRecordsList(Stack<MedicalRecord> medicalHistory) {
+    public MedicalsRecordsList() {
         this.medicalHistory = new Stack();
     }
 
