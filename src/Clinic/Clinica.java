@@ -28,7 +28,7 @@ public class Clinica {
     public Patient findPatient(String id) {
     Iterator<Patient> it = patients.getAll();
 
-    while (it.hasNext()) {
+        while (it.hasNext()) {
         Patient patient = it.next();
 
         if (patient.getId().equals(id)) {
@@ -74,11 +74,20 @@ public class Clinica {
     
 
     public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
+    Appointment appointment = findAppointment(code);
+
+        if (appointment == null) {
+        return false;
     }
+
+        appointment.reschedule(newDate, newTime);
+    return true;
+}
+    
     public boolean cancelAppointment(String code) {
     Iterator<Appointment> iterator = appoinments.getAll();
 
-    while (iterator.hasNext()) {
+        while (iterator.hasNext()) {
         Appointment appointment = iterator.next();
 
         if (appointment.getCode().equals(code)) {
@@ -105,21 +114,54 @@ public class Clinica {
             }
             
         }
-        return false; 
+    return false; 
     }
 
     public Patient getNextPatient() {
-       
+    Iterator<Patient> it = waitingRoom.getAll();
+
+        if (it.hasNext()) {
+        return it.next();
     }
 
-    public Patient attendNextPatient() {
-       
+    return null;
+}
+
+   public Patient attendNextPatient() {
+    Iterator<Patient> it = waitingRoom.getAll();
+
+        if (!it.hasNext()) {
+        return null;
     }
 
-    public int getWaitingPatientCount() {
+        Patient nextPatient = it.next();
+        it.remove(); 
 
+    return nextPatient;
+}
+
+   public int getWaitingPatientCount() {
+    Iterator<Patient> it = waitingRoom.getAll();
+       int count = 0;
+
+       while (it.hasNext()) {
+        it.next();
+        count++;
     }
 
-    public boolean isPatientWaiting(String patientId) {
+    return count;
+}
+   public boolean isPatientWaiting(String patientId) {
+    Iterator<Patient> it = waitingRoom.getAll();
 
+       while (it.hasNext()) {
+       Patient patient = it.next();
+
+       if (patient.getId().equals(patientId)) {
+            return true;
+        }
     }
+
+    return false;
+    }
+}
