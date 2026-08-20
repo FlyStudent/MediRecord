@@ -23,36 +23,48 @@ public class waitingroomlist implements SequentialDynamicsList<Patient> {
         this.waitingList = waitinList;
     }
     
+    public Queue<Patient> getWaitingList() {
+        return waitingList;
+    }
+    
+    public void setWaitingList(Queue<Patient> waitingList) {
+        this.waitingList = waitingList;
+    }
     
 
     @Override
     public Patient get() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return waitingList.peek();
     }
 
     @Override
     public boolean remove() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (waitingList.isEmpty()) {
+            return false;
+        }
+
+        waitingList.poll();
+        return true;
     }
 
     @Override
     public boolean add(Patient item) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return waitingList.offer(item);
     }
 
     @Override
     public Iterator getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return waitingList.iterator();
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return waitingList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return waitingList.isEmpty();
     }
     
 }

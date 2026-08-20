@@ -12,10 +12,10 @@ import java.util.Queue;
  *
  * @author Student
  */
-class WaitingRoom {
+class waitingroom {
     private Queue<String> queue;
 
-    public WaitingRoom() {
+    public waitingroom() {
         this.queue = new LinkedList<>();
     }
 
