@@ -34,7 +34,6 @@ public class FrmMedicalRecord extends javax.swing.JFrame {
         jDiagnostico = new javax.swing.JLabel();
         jTratamiento = new javax.swing.JLabel();
         jNota = new javax.swing.JLabel();
-        jChooserDate = new com.toedter.calendar.JDateChooser();
         txtRazon = new javax.swing.JTextField();
         txtDiagnostico = new javax.swing.JTextField();
         txtTratamiento = new javax.swing.JTextField();
@@ -42,6 +41,7 @@ public class FrmMedicalRecord extends javax.swing.JFrame {
         txtNota = new javax.swing.JTextArea();
         jTitulo = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,13 +88,12 @@ public class FrmMedicalRecord extends javax.swing.JFrame {
                     .addComponent(jRazon)
                     .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
-                .addGroup(JpPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(JpPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtDiagnostico, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtRazon, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jChooserDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)))
+                .addGroup(JpPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtRazon)
+                    .addComponent(txtDiagnostico))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpPantallaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -114,7 +113,7 @@ public class FrmMedicalRecord extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(JpPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jChooserDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JpPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpPantallaLayout.createSequentialGroup()
@@ -195,8 +194,8 @@ public class FrmMedicalRecord extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpPantalla;
     private javax.swing.JButton btnLimpiar;
-    private com.toedter.calendar.JDateChooser jChooserDate;
     private javax.swing.JLabel jDate;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jDiagnostico;
     private javax.swing.JLabel jNota;
     private javax.swing.JLabel jRazon;
