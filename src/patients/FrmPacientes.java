@@ -23,6 +23,36 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
         initComponents();
         controller = ClinicController.getInstance(this);
         controller.setView(this);
+        
+        
+    }
+    
+    @Override
+    public void clear() {
+    txtIdentificacion.setText("");
+    txtTelefono.setText("");
+    txtCorreo.setText("");
+    txtNombre.setText("");
+    txtFechaN.setText("");
+    }
+
+    @Override
+    public void showData(Patient data) {
+    txtIdentificacion.setText(data.getId());
+    txtNombre.setText(data.getFullName());
+    txtFechaN.setText(data.getBirthDate().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    txtTelefono.setText(data.getPhone());
+    txtCorreo.setText(data.getEmail());
+    }
+    
+    @Override
+    public void showError(String error) {
+    javax.swing.JOptionPane.showMessageDialog(this, error, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    
+    @Override
+    public void showMessage(String message) {
+    javax.swing.JOptionPane.showMessageDialog(this, message, "Aviso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -51,7 +81,7 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -173,8 +203,8 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
         jButton2.setText("Revertir");
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
-        jButton3.setText("Guardar");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(this::btnGuardarActionPerformed);
 
         jButton4.setText("Volver");
         jButton4.addActionListener(this::jButton4ActionPerformed);
@@ -193,7 +223,7 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -210,7 +240,7 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
                     .addContainerGap(533, Short.MAX_VALUE)))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBuscar, jButton2, jButton3, jButton4, jButton5});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBuscar, btnGuardar, jButton2, jButton4, jButton5});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +251,7 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -285,9 +315,9 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -298,7 +328,7 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+         clear();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -332,8 +362,8 @@ public class FrmPacientes extends javax.swing.JFrame implements iView<Patient> {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;

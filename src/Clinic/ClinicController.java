@@ -54,8 +54,9 @@ public class ClinicController {
     }
 
     public boolean scheduleAppointment(Appointment appointment) {
-    return clinic.scheduleAppointment(code, LocalDate.MAX, LocalTime.MIN)
-    }
+    if (appointment == null) return false;
+    return clinic.scheduleAppointment(appointment.getCode(), appointment.getDate(), appointment.getTime());
+}
 
     public Appointment findAppointment(String code) {
         return clinic.findAppointment(code);
