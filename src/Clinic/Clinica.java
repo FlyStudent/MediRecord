@@ -48,7 +48,7 @@ public class Clinica {
         return patients.getAll();
     }
 
-    public boolean scheduleAppointment(String code,  LocalDate newDate, LocalTime newTime) {
+    public boolean rescheduleAppointment(String code,  LocalDate newDate, LocalTime newTime) {
         if (appoinments.isEmpty()) return false; 
         Appointment appo = appoinments.get(code);
         if (appo==null) return false; 
@@ -73,7 +73,7 @@ public class Clinica {
 }
     
 
-    public boolean rescheduleAppointment(Appointment appointment) {
+    public boolean escheduleAppointment(Appointment appointment) {
    return appoinments.add(appointment);
 }
     
