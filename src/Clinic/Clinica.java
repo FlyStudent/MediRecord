@@ -73,15 +73,8 @@ public class Clinica {
 }
     
 
-    public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
-    Appointment appointment = findAppointment(code);
-
-        if (appointment == null) {
-        return false;
-    }
-
-        appointment.reschedule(newDate, newTime);
-    return true;
+    public boolean rescheduleAppointment(Appointment appointment) {
+   return appoinments.add(appointment);
 }
     
     public boolean cancelAppointment(String code) {
