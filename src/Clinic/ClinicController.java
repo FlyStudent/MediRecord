@@ -15,7 +15,7 @@ import patients.Patient;
  * @author bryan
  */
 public class ClinicController {
-    
+
     private Clinica clinic;
     private iView view;
 
@@ -23,85 +23,89 @@ public class ClinicController {
         this.view = view;
     }
 
-    private  ClinicController(iView view) {
+    private ClinicController(iView view) {
         this.clinic = new Clinica();
         this.view = view;
     }
-    
+
     private static ClinicController controller;
-    
-    public static ClinicController getInstance(iView view){
-        if(controller==null)
+
+    public static ClinicController getInstance(iView view) {
+        if (controller == null)
             controller = new ClinicController(view);
         return controller;
     }
-            
-    //singletone 
-    public void addPatient(Patient patient){
 
+    // singleton
+    public void addPatient(Patient patient) {
+        clinic.addPatient(patient);
     }
 
-    public Patient findPatient(String id){
-        
+    public Patient findPatient(String id) {
+        return clinic.findPatient(id); // faltaba pasar el id
     }
 
-    public void removePatient(String id){
-        
+    public void removePatient(String id) {
+        clinic.removePatient(id);
     }
 
-    public Iterator<Patient> getPatients(){
-        
+    public Iterator<Patient> getPatients() {
+        return clinic.getPatients();
     }
 
-    public boolean scheduleAppointment(Appointment appointment){
-        return false;
+    public boolean scheduleAppointment(Appointment appointment) {
+    return clinic.scheduleAppointment(code, LocalDate.MAX, LocalTime.MIN)
     }
 
-    public Appointment findAppointment(String code){
-        return null;
+    public Appointment findAppointment(String code) {
+        return clinic.findAppointment(code);
     }
 
-    public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime){
-        return false;
+    public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
+        return clinic.rescheduleAppointment(code, newDate, newTime);
     }
 
-    public boolean cancelAppointment(String code){
-        return false;
+    public boolean cancelAppointment(String code) {
+        return clinic.cancelAppointment(code);
     }
 
-    public Iterator<Appointment> getAppointments(){
-        return null;
+    public Iterator<Appointment> getAppointments() {
+        return clinic.getAppointments(); 
     }
 
-    public boolean checkInPatient(String patientId){
+    public boolean checkInPatient(String patientId) {
         boolean status = clinic.checkInPatient(patientId);
-        if(status){
+        if (status) {
             view.showMessage("Registro se completo el checkIn");
-        }else{
+        } else {
             view.showError("No se completo el checkIn, el paciente no tiene cita registrada");
         }
         return status;
     }
-    
-    public Patient getNextPatient(){
-        return null;
+
+    public Patient getNextPatient() {
+        Patient pat = clinic.getNextPatient();
+        if (pat == null) {
+            view.showError("Ya no existen pacientes en la lista");
+        }
+        return pat; 
     }
 
-    public Patient attendNextPatient(){
-        Patient pat =clinic.getNextPatient();
-        if(pat==null){
+    public Patient attendNextPatient() {
+        Patient pat = clinic.getNextPatient();
+        if (pat == null) {
             view.showError("Ya no existen pacientes en la lista de espera");
-        }else {
+        } else {
             clinic.attendNextPatient();
         }
         return pat;
     }
 
-    public int getWaitingPatientCount(){
-        return 0;
+    public int getWaitingPatientCount() {
+        return clinic.getWaitingPatientCount();
     }
 
-    public boolean isPatientWaiting(String patientId){
-        return false;
+    public boolean isPatientWaiting(String patientId) {
+        return clinic.isPatientWaiting(patientId);
     }
 }
