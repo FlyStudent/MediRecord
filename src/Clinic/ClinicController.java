@@ -37,33 +37,73 @@ public class ClinicController {
     }
 
     // singleton
-    public void addPatient(Patient patient) {
-        clinic.addPatient(patient);
+    public boolean addPatient(Patient patient){
+        boolean status = clinic.addPatient(patient);
+        if (status){
+            view.showMessage("Paciente registrado con éxito");
+            view.clear();
+        } else {
+            view.showError("No se pudo registrar el paciente por identificación duplicada");
+        }
+        return status;
     }
 
-    public Patient findPatient(String id) {
-        return clinic.findPatient(id); // faltaba pasar el id
+    public Patient findPatient(String id){
+        Patient patient = clinic.findPatient(id);
+        if (patient == null){
+            view.showError("No se ha encontrado un paciente con esa identificación:( ");
+            view.clear();
+        } else {
+            view.showData(patient);
+        }
+        return patient;
     }
 
-    public void removePatient(String id) {
-        clinic.removePatient(id);
+     public boolean removePatient(String id){
+        boolean status = clinic.removePatient(id);
+        if (status){
+            view.showMessage("Paciente eliminado correctamente");
+            view.clear();
+        } else {
+            view.showError("No se pudo eliminar: paciente no encontrado");
+        }
+        return status;
     }
 
     public Iterator<Patient> getPatients() {
         return clinic.getPatients();
     }
 
-    public boolean scheduleAppointment(Appointment appointment) {
-    if (appointment == null) return false;
-    return clinic.scheduleAppointment(appointment.getCode(), appointment.getDate(), appointment.getTime());
-}
-
-    public Appointment findAppointment(String code) {
-        return clinic.findAppointment(code);
+    public boolean scheduleAppointment(Appointment appointment){
+        boolean status = clinic.scheduleAppointment(appointment);
+        if (status){
+            view.showMessage("Cita agendada con exito :) ");
+            view.clear();
+        } else {
+            view.showError("La cita no se pudo agendar");
+        }
+        return status;
     }
 
-    public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
-        return clinic.rescheduleAppointment(code, newDate, newTime);
+    public Appointment findAppointment(String code){
+        Appointment appo = clinic.findAppointment(code);
+        if (appo == null){
+            view.showError("No se ha encontrado una cita agendada:( ");
+            view.clear();
+        } else {
+            view.showData(appo);
+        }
+        return appo;
+    }
+
+    public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime){
+        boolean status = clinic.rescheduleAppointment(code, newDate, newTime);
+        if (status){
+            view.showMessage("La cita se ha reagendado correctamente");
+        } else {
+            view.showError("No se pudo reagendar la cita ");
+        }
+        return status;
     }
 
     public boolean cancelAppointment(String code) {
