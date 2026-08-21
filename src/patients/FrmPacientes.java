@@ -55,30 +55,21 @@ public class FrmPacientes extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
-        jTextField2.setText("jTextField1");
+        jTextField4.addActionListener(this::jTextField4ActionPerformed);
 
-        jTextField3.setText("jTextField1");
+        jLabel1.setText("Nombre");
 
-        jTextField4.setText("jTextField1");
+        jLabel2.setText("Identificacion");
 
-        jTextField5.setText("jTextField1");
+        jLabel3.setText("Telefono");
 
-        jTextField6.setText("jTextField1");
+        jLabel4.setText("Registros");
 
-        jLabel1.setText("jLabel1");
+        jLabel5.setText("Fecha de Nacimiento");
 
-        jLabel2.setText("jLabel1");
-
-        jLabel3.setText("jLabel1");
-
-        jLabel4.setText("jLabel1");
-
-        jLabel5.setText("jLabel1");
-
-        jLabel6.setText("jLabel1");
+        jLabel6.setText("Correo Electronico");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,7 +133,9 @@ public class FrmPacientes extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Pacientes");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,17 +156,15 @@ public class FrmPacientes extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton2.setText("jButton1");
+        jButton2.setText("Revertir");
 
-        jButton3.setText("jButton1");
+        jButton3.setText("Guardar");
 
-        jButton4.setText("jButton1");
+        jButton4.setText("Volver");
 
-        jButton5.setText("jButton1");
+        jButton5.setText("Cancelar");
 
-        jButton6.setText("jButton1");
-
-        jButton7.setText("jButton1");
+        jButton6.setText("Buscar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -248,6 +239,10 @@ public class FrmPacientes extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
