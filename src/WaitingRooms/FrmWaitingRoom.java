@@ -5,6 +5,7 @@
 package WaitingRooms;
 
 import Clinic.iView;
+import patients.PacientsList;
 import patients.Patient;
 
 /**
@@ -16,11 +17,12 @@ public class FrmWaitingRoom extends javax.swing.JFrame implements iView<Patient>
     /**
      * Creates new form FrmWaitingRoom
      */
-    
     private waitingroomlist waitingRoom;
-    
+    private final PacientsList PacientsList;
+
     public FrmWaitingRoom() {
         initComponents();
+        PacientsList = new PacientsList();
         waitingRoom = new waitingroomlist();
     }
 
@@ -37,6 +39,7 @@ public class FrmWaitingRoom extends javax.swing.JFrame implements iView<Patient>
         Eliminar = new javax.swing.JButton();
         Mostrar = new javax.swing.JButton();
         Agregar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,64 +71,94 @@ public class FrmWaitingRoom extends javax.swing.JFrame implements iView<Patient>
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Sala de Espera");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Siguiente, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(223, 223, 223))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                    .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
-    Patient paciente = waitingRoom.get();
+        Patient paciente = waitingRoom.get();
 
-    if (paciente != null) {
-        showMessage("Siguiente paciente: " + paciente);
-        waitingRoom.remove();
-    } else {
-        showMessage("No hay pacientes en espera.");
-    }
+        if (paciente != null) {
+            showMessage("Paciente: " + paciente.getFullName() + "\nID: " + paciente.getId() + "\nEdad: " + paciente.getAge() + "\nTelefono: " + paciente.getPhone() + "\nEmail: " + paciente.getEmail());
+            waitingRoom.remove();
+        } else {
+            showMessage("No hay pacientes en espera");
+        }
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        System.out.println("Cantidad de pacientes: " + waitingRoom.size());
+        if (!waitingRoom.isEmpty()) {
+            Patient paciente = waitingRoom.get();
+            waitingRoom.remove();
+
+            showMessage("Paciente eliminado:\n" + paciente.getFullName());
+        } else {
+            showError("No hay pacientes para eliminar.");
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        if (!waitingRoom.isEmpty()) {
-            waitingRoom.remove();
-            System.out.println("Paciente eliminado de la sala de espera.");
-        } else {
-            System.out.println("No hay pacientes para eliminar.");
+        String id = javax.swing.JOptionPane.showInputDialog(this,"Ingrese el ID del paciente:");
+
+        if (id != null && !id.isEmpty()) {
+
+            Patient paciente = PacientsList.get(id);
+
+            if (paciente != null) {
+
+                if (waitingRoom.add(paciente)) {
+                    showMessage("Paciente agregado a la sala de espera:\n" + paciente.getFullName());
+                } else {
+                    showError("El paciente ya se encuentra en la sala de espera.");
+                }
+            } else {
+                showError("No existe un paciente con el ID: " + id);
+            }
         }
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
-        System.out.println("Sala de espera vacía: " + waitingRoom.isEmpty());
+        if (waitingRoom.isEmpty()) {
+            showMessage("La sala de espera esta vacia");
+        } else {
+            showMessage("Hay " + waitingRoom.size() + " pacientes en espera.");
+        }
     }//GEN-LAST:event_MostrarActionPerformed
 
     /**
@@ -168,6 +201,7 @@ public class FrmWaitingRoom extends javax.swing.JFrame implements iView<Patient>
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Mostrar;
     private javax.swing.JButton Siguiente;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -182,11 +216,11 @@ public class FrmWaitingRoom extends javax.swing.JFrame implements iView<Patient>
 
     @Override
     public void showError(String error) {
-            javax.swing.JOptionPane.showMessageDialog(this,error,"Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+        javax.swing.JOptionPane.showMessageDialog(this, error, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
     public void showMessage(String message) {
-    javax.swing.JOptionPane.showMessageDialog(this,message);
+        javax.swing.JOptionPane.showMessageDialog(this, message);
     }
 }
