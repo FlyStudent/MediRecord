@@ -74,16 +74,7 @@ public class ClinicController {
         return clinic.getPatients();
     }
 
-    public boolean scheduleAppointment(Appointment appointment){
-        boolean status = clinic.scheduleAppointment(appointment);
-        if (status){
-            view.showMessage("Cita agendada con exito :) ");
-            view.clear();
-        } else {
-            view.showError("La cita no se pudo agendar");
-        }
-        return status;
-    }
+    
 
     public Appointment findAppointment(String code){
         Appointment appo = clinic.findAppointment(code);
